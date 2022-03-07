@@ -6,7 +6,7 @@ The files in this repository were used to configure the network depicted below.
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the **playbook** file may be used to install only certain pieces of it, such as Filebeat.
 
-  - [filebeat-playbook.yml](Ansible/filebeat-playbook.md)
+  - [filebeat-playbook.yml](https://github.com/sjglock/Project1/blob/main/Ansible/filebeat-playbook.yml)
 
 This document contains the following details:
 - Description of the Topology
@@ -21,50 +21,55 @@ This document contains the following details:
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
-Load balancing ensures that the application will be highly _____, in addition to restricting _____ to the network.
-- _TODO: What aspect of security do load balancers protect? What is the advantage of a jump box?_
+Load balancing ensures that the application will be highly efficient, in addition to restricting access to the network.
+- Load balancers are an additional layer of protection to the firewall to prevent unauthorized traffic from accessing the web machine, help prevent dDOS attacks, and minimizes the downtime if one server goes down. The main advantage of a jump box is to act as an intermediary between the internet and the web machines by adding an additional layer of protection and further restricting the ports that can access the web machines.
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _____ and system _____.
-- _TODO: What does Filebeat watch for?_
-- _TODO: What does Metricbeat record?_
+Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the log files and system services.
+- _Filebeat monitors the log files or locations that you specify, collects log events, and forwards them either to Elasticsearch or Logstash for indexing._
+- _Metricbeat helps you monitor your servers by collecting metrics from the system and services running on the server, such as: Apache._
 
 The configuration details of each machine may be found below.
-_Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
-| Name     | Function | IP Address | Operating System |
-|----------|----------|------------|------------------|
-| Jump Box | Gateway  | 10.0.0.1   | Linux            |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
+| Name                 | Function   | IP Address                                | Operating System |
+|----------------------|------------|-------------------------------------------|------------------|
+| Jump-Box_Provisioner | Gateway    | 10.0.0.4 (Private) 52.255.138.42 (Public) | Linux            |
+| Web-1                | Webserver  | 10.0.0.5                                  | Linux            |
+| Web-2                | Webserver  | 10.0.0.6                                  | Linux            |
+| Web-3                | Webserver  | 10.0.0.7                                  | Linux            |
+| ELK-Server           | Elk Server | 10.1.0.4 (Private) 168.61.212.52 (Public) | Linux            |
 
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the _____ machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- _TODO: Add whitelisted IP addresses_
+Only the Jump Box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
+- 67.191.215.55 (Home Public IP)
 
-Machines within the network can only be accessed by _____.
-- _TODO: Which machine did you allow to access your ELK VM? What was its IP address?_
+Machines within the network can only be accessed by the Jump Box.
+- The Jump Box has a Public IP of 52.255.138.42 and a Private IP of 10.0.0.4
 
 A summary of the access policies in place can be found in the table below.
 
-| Name     | Publicly Accessible | Allowed IP Addresses |
-|----------|---------------------|----------------------|
-| Jump Box | Yes/No              | 10.0.0.1 10.0.0.2    |
-|          |                     |                      |
-|          |                     |                      |
+| Name                 | Publicly Accessible | Allowed IP Addresses                                                     |
+|----------------------|---------------------|--------------------------------------------------------------------------|
+| Jump-Box_Provisioner | Yes SSH (22)        | 10.0.0.0/24 (RedTeam_VNET) 10.1.0.0/24 (ELK_VNET) 67.191.215.55 (Public) |
+| Web-1                | No                  | 10.0.0.0/24 (RedTeam_VNET) 10.1.0.0/24 (ELK_VNET)                        |
+| Web-2                | No                  | 10.0.0.0/24 (RedTeam_VNET) 10.1.0.0/24 (ELK_VNET)                        |
+| Web-3                | No                  | 10.0.0.0/24 (RedTeam_VNET) 10.1.0.0/24 (ELK_VNET)                        |
+| ELK-Server           | Yes http (5601)     | 10.0.0.0/24 (RedTeam_VNET) 10.1.0.0/24 (ELK_VNET) 67.191.215.55 (Public) |
 
 ### Elk Configuration
 
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
-- _TODO: What is the main advantage of automating configuration with Ansible?_
+- Ansible's main advantage is that it can be run from the command line without requiring configuration files for simple tasks such as services, updates, and reboots. Ansible also makes deploying multiple simultaneous machines easier.
 
 The playbook implements the following tasks:
-- _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
-- ...
-- ...
+- Install Docker
+- Install pip3
+-	Install Docker Python Module
+-	Increase Virtual Memory
+-	download and launch a docker elk container
+-	Enable service docker on boot
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
