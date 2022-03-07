@@ -15,12 +15,14 @@ o	Machines Being Monitored
 •	How to Use the Ansible Build
 Description of the Topology
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
+
 Load balancing ensures that the application will be highly efficient, in addition to restricting access to the network.
 •	TODO: Load balancers are an additional layer of protection to the firewall to prevent unauthorized traffic from accessing the web machine, help prevent dDOS attacks, and minimizes the downtime if one server goes down. The main advantage of a jump box is to act as an intermediary between the internet and the web machines by adding an additional layer of protection and further restricting the ports that can access the web machines.  
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the log events and system services.
 •	TODO: What does Filebeat watch for? Log events
 •	TODO: What does Metricbeat record? Metrics from OS and system services
 The configuration details of each machine may be found below. Note: Use the Markdown Table Generator to add/remove values from the table.
+
 Name	Function	IP Address	Operating System
 Jump Box	Gateway	10.0.0.4	Linux
 Web-1	Webserver	10.0.0.5	Linux
