@@ -73,7 +73,7 @@ The playbook implements the following tasks:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps.png)
+![docker](Images/docker_ps.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
@@ -91,12 +91,13 @@ In order to use the playbook, you will need to have an Ansible control node alre
 SSH into the control node and follow the steps below:
 - Copy the configuration file [filebeat-config.yml](Ansible/filebeat-config.yml) [metricbeat-config.yml](Ansible/metricbeat-config.yml) to /etc/ansible/files.
 - Update the configuration file to include the IP Address of the ELK Server
-- Write the playbooks to include the commands that should be pushed to the webservers. [filebeat-playbook.yml](Ansible/filebeat-playbook.yml) [metricbeat-playbook.yml](Ansible/metricbeat-playbook.yml)
+- Write the playbooks to include the commands that should be pushed to the webservers. 
 - Run the playbook, and navigate to Elk Server to check that the installation worked as expected.
+![filebeat](Images/filebeat.png)
+![metricbeat](Images/metricbeat.png)
 
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
+- The Filebeat Playbook [filebeat-playbook.yml](Ansible/filebeat-playbook.yml) and Metricbeat Playbook [metricbeat-playbook.yml](Ansible/metricbeat-playbook.yml) were coppied to /etc/ansible/roles
+- The host file (located at /etc/ansible/[hosts](Ansible/hosts) was updated to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_ Within the hosts file, '[webservers]' specify the IP addresses of the webservers and [elk] specifies the IP address of the ELK server.  You must create your playbook to include the respective host [] that you are deploying to.
 - _Which URL do you navigate to in order to check that the ELK server is running?
 
 _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
