@@ -6,8 +6,15 @@ The files in this repository were used to configure the network depicted below.
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the **playbook** file may be used to install only certain pieces of it, such as Filebeat.
 
-  - [filebeat-playbook.yml](https://github.com/sjglock/Project1/blob/main/Ansible/filebeat-playbook.yml)
-
+  - [Ansible Configuration File](Ansible/ansible.cfg)
+  - [Ansible Hosts File](Ansible/hosts)
+  - [ELK Install Playbook](Ansible/install_elk.yml)
+  - [Filebeat Configuration File](Ansible/filebeat-config.yml)
+  - [Filebook Playbook](Ansible/filebeat-playbook.yml)
+  - [Metricbeat Configuration File](Ansible/metricbeat-config.yml)
+  - [Metricbeat Playbook](Ansible/metricbeat-playbook.yml)
+ 
+ 
 This document contains the following details:
 - Description of the Topology
 - Access Policies
@@ -96,20 +103,21 @@ SSH into the control node and follow the steps below:
 - Reanme the Metricbeat file using the command *mv metricbeat metricbeat-config.yml*
 - Copy the configuration file [filebeat-config.yml](Ansible/filebeat-config.yml) [metricbeat-config.yml](Ansible/metricbeat-config.yml) to /etc/ansible/files.
 - Update the configuration files to include the IP Address of the ELK Server
-- Write the filebeat and metricbeat playbooks to include the commands that should be deployed to the webservers.
-- Copy the Filebeat Playbook [filebeat-playbook.yml](Ansible/filebeat-playbook.yml) and Metricbeat Playbook [metricbeat-playbook.yml](Ansible/metricbeat-playbook.yml) to /etc/ansible/roles 
 - Update the host file (located at [/etc/ansible/hosts](Ansible/hosts) to reflect the following: 
   - under the heading [webservers] specify the IP addresses of the webservers 
-  - under the heading [elk] specify the IP address of the ELK server  
-  - You must create your playbook to include the respective host [] that you are deploying to. 
+  - under the heading [elk] specify the IP address of the ELK server 
+  - This is how the playbook will know which host to run commands on
+
+![webservers](Images/webservers.png)
+![elkservers](Images/elkservers.png) 
+- Write the filebeat and metricbeat playbooks to include the commands that should be deployed to the webservers.
+  - Be sure to update the host line to include the respective host [webservers] as listed above
+- Copy the Filebeat Playbook [filebeat-playbook.yml](Ansible/filebeat-playbook.yml) and Metricbeat Playbook [metricbeat-playbook.yml](Ansible/metricbeat-playbook.yml) to /etc/ansible/roles 
 - Run the Filebeat playbook using the command *ansible-playbook filebeat-playbook.yml*
 - Run the Metricbeat playbook using the command *ansible-playbook metricbeat-playbook.yml*
 - Navigate to Elk Server to check that the installation worked as expected.
 ![filebeat](Images/filebeat.png)
 ![metricbeat](Images/metricbeat.png)
-
-- 
-- The host file (located at [/etc/ansible/hosts](Ansible/hosts) was updated to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_ Within the hosts file, [webservers] specify the IP addresses of the webservers and [elk] specifies the IP address of the ELK server.  You must create your playbook to include the respective host [] that you are deploying to.
 - Navigate to the ELK Server (http://ELK_VM_PublicIP:5601) in order to check and see if the ELK Server is running.
 
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+![kibana](Images/kibana.png)
